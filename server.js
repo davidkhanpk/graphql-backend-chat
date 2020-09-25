@@ -7,7 +7,7 @@ const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const contextMiddleware = require('./utils/contextMiddleware')
 
-const PORT = process.env.port || 4000
+const PORT = process.env.PORT || 4000
 
 
 const server = new ApolloServer({
