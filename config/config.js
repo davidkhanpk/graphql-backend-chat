@@ -1,4 +1,4 @@
-require('dotenv').config('../.env');
+// require('dotenv').config('../.env');
 
 module.exports = {
   "username": process.env.DB_USERNAME,

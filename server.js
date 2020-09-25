@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { sequelize } = require('./models')
-require('dotenv').config()
+// require('dotenv').config()
 
 // The GraphQL schema
 const typeDefs = require('./graphql/typeDefs');
