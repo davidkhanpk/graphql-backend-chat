@@ -10,7 +10,7 @@ const contextMiddleware = require("./utils/contextMiddleware");
 const PORT = process.env.PORT || 4000;
 
 const server = new ApolloServer({
-  //comment
+  //comment added
   typeDefs,
   resolvers,
   context: contextMiddleware,
