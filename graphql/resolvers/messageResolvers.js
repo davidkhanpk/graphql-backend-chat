@@ -84,7 +84,7 @@ module.exports = {
         if (!user) {
           throw new AuthenticationError("Unauthenticated");
         }
-        const message = await Message.findOne({ where: { uuid } });
+        let message = await Message.findOne({ where: { uuid } });
         if (!message) throw new UserInputError("Message not Found");
         if (message.from !== user.username && message.to !== user.username) {
           throw new ForbiddenError("Unauthorized");
