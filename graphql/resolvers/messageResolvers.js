@@ -9,6 +9,10 @@ const { Op } = require("sequelize");
 const translate = require("@vitalets/google-translate-api");
 const { PubSub } = require("graphql-subscriptions");
 var pubsub = new PubSub();
+const langs = {
+  english: "en",
+  portuguese: "pt",
+};
 
 module.exports = {
   Query: {
@@ -33,16 +37,19 @@ module.exports = {
         throw err;
       }
     },
-    getTranslation(parent, { string, to, from }, { user }) {
+    async getTranslation(parent, { string, to, from }, { user }) {
       try {
         if (!user) throw new AuthenticationError("Unauthenticated");
-        translate(string, { to: "en" })
-          .then((res) => {
-            return res.text;
-          })
-          .catch((err) => {
-            throw new UserInputError("Language Failed");
-          });
+        let langData = await translate(string, {
+          to: langs[to],
+          from: langs[from],
+        });
+        console.log(langData);
+        return {
+          to,
+          from,
+          string: langData.text,
+        };
       } catch (err) {
         throw err;
       }
