@@ -8,7 +8,7 @@ const {
 const { Op } = require("sequelize");
 const translate = require("@vitalets/google-translate-api");
 const { PubSub } = require("graphql-subscriptions");
-const pubsub = new PubSub();
+var pubsub = new PubSub();
 
 module.exports = {
   Query: {
@@ -74,7 +74,7 @@ module.exports = {
       }
     },
     reactToMessage: async (_, { uuid, content }, { user }) => {
-      const reactions = ["❤️", "😆", "😯", "😢", "😡", "👍", "👎"];
+      let reactions = ["❤️", "😆", "😯", "😢", "😡", "👍", "👎"];
       try {
         if (!reactions.includes(content)) {
           throw new UserInputError("Invalid Reaction");
