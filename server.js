@@ -27,3 +27,17 @@ server.listen({ port: PORT }).then(({ url, subUrl }) => {
     })
     .catch();
 });
+
+const express = require("express");
+const http = require("http");
+const PeerDataServer = require("peer-data-server");
+var cors = require('cors');
+const app = express();
+
+const appendPeerDataServer = PeerDataServer.default || PeerDataServer;
+app.use(cors())
+const socketServer = http.createServer(app);
+
+appendPeerDataServer(socketServer);
+socketServer.listen(8080, () => console.log(`Server started at port 5000`));
+

@@ -124,7 +124,6 @@ module.exports = {
   Subscription: {
     newMessage: {
       subscribe: () => {
-        console.log(pubsub);
         let it = pubsub.asyncIterator(["NEW_MESSAGE"]);
         return it;
       },
